@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">News Management</h2>
+    
+    <button class="btn btn-primary mb-3" (click)="addNews()">Add News</button>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let news of newsList; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ news.title }}</td>
+                        <td>{{ news.content }}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editNews(news.id , news)">Edit</button>
+                            <button class="btn btn-danger" (click)="deleteNews(news.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

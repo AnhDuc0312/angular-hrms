@@ -1,0 +1,70 @@
+
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" [attr.data-interval]="slideInterval">
+      <ol class="carousel-indicators">
+        <!-- <li *ngFor="let slide of slides; let i = index" [class.active]="i === 0" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"></li> -->
+      </ol>
+      <div class="carousel-inner">
+        <div *ngFor="let slide of slides; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img class="d-block w-100" [src]="slide.imageUrl" [alt]="'Slide ' + (i + 1)">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="news-title">
+      <h1>NEWS</h1>
+    </div>
+    <div class="news-container">
+      <div class="row">
+        <!-- Cột đầu tiên -->
+        <div class="col-md-6 column-left">
+          <div
+            *ngFor="let newsItem of newsItemsForColumn1.slice(0, 3)"
+            class="news-items"
+          >
+            <h3>{{ newsItem.title }}</h3>
+            <p>{{ newsItem.content }}</p>
+          </div>
+        </div>
+
+        <!-- Cột thứ hai -->
+        <div class="col-md-6 column-right">
+          <div
+            *ngFor="let newsItem of newsItemsForColumn1.slice(3, 6)"
+            class="news-items"
+          >
+            <h3>{{ newsItem.title }}</h3>
+            <p>{{ newsItem.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Phần điều hướng trang -->
+  <div class="pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>{{ currentPage }} / {{ getTotalPages() }}</span>
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === getTotalPages()"
+    >
+      Next
+    </button>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2>Biểu mẫu chấm công</h2>
+
+  <!-- Ô tìm kiếm theo thời gian -->
+  <div class="search-time">
+    <label for="searchDate">Tìm kiếm theo ngày:</label>
+    <input type="date" id="searchDate" name="searchDate" [(ngModel)]="searchDate">
+    <button (click)="filterByDate()">Tìm kiếm</button>
+  </div>
+
+  <!-- Bảng chấm công -->
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>ID Nhân viên</th>
+        <th>Tên Nhân viên</th>
+        <th>Ngày</th>
+        <th>Thời gian ra</th>
+        <th>Thời gian vào</th>
+        <th>Đủ Công/Thiếu Công</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Dòng dữ liệu -->
+      <tr *ngFor="let record of attendanceRecords | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+        <td>{{ record.employeeId }}</td>
+        <td>{{ record.employeeName }}</td>
+        <td>{{ record.date | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ record.checkOutTime }}</td>
+        <td>{{ record.checkInTime }}</td>
+        <td>{{ record.workStatus }}</td>
+        <td>{{ record.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Phân trang -->
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }}/{{ getTotalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === getTotalPages()">Next</button>
+  </div>
+</div>
+
+<app-footer></app-footer>

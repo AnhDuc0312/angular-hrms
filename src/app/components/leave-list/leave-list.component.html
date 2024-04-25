@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="container">
+    <div class="create-form">
+        <button class="btn-create" (click)="navigateToOtherPage()" >Đăng kí</button>
+      </div>
+  <div class="title">
+    DANH SÁCH NGÀY NGHỈ
+  </div>
+  
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Ngày</th>
+        <th>Lý do</th>
+        <th>Loại nghỉ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let leave of leaves">
+        <td>{{ leave.date }}</td>
+        <td>{{ leave.reason }}</td>
+        <td>{{ leave.leaveType }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }}/{{ getTotalPages() }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === getTotalPages()">Next</button>
+  </div>
+  
+</div>
+<app-footer></app-footer>
